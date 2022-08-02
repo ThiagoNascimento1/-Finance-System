@@ -12,18 +12,20 @@ import { useState } from 'react';
 import { categories } from '../../data/categories';
 
 // Helpers
-import { getCurrentMonth } from '../../helpers/dataFilter';
+import { FilterListByMonth, getCurrentMonth } from '../../helpers/dataFilter';
 
 export const App = () => {
 
   const [listItem, setListItem] = useState<Item[]>([{
-    date: new Date(2, 7, 2022),
+    date: "02-08-2022",
     category: "alimentação",
     title: "lanche",
     value: 22.50
   }]);
+  const [dataFiltered, setDataFiltered] = useState("02-08-2022");
 
-  console.log(getCurrentMonth());
+  const listFiltered = FilterListByMonth(listItem, dataFiltered);
+
 
   return (
     <C.Container>
@@ -32,6 +34,9 @@ export const App = () => {
       </C.Header>
       <C.Body>
         {listItem.map((item, i) => (
+          <div key={i}>{item.title}</div>
+        ))}
+        {listFiltered.map((item, i) => (
           <div key={i}>{item.title}</div>
         ))}
       </C.Body>
