@@ -3,19 +3,16 @@ import * as C from './styles';
 
 // Types
 import { Item } from '../../types/Item';
-import { Category } from '../../types/Category';
 
 // Hooks
 import { useState } from 'react';
-
-// Date
-import { categories } from '../../data/categories';
 
 // Helpers
 import { FilterListByMonth, getCurrentMonth } from '../../helpers/dataFilter';
 
 // Components
 import { TableArea } from '../../components/TableArea';
+import { AreaInfo } from '../../components/AreaInfo';
 
 export const App = () => {
 
@@ -25,9 +22,11 @@ export const App = () => {
     title: "lanche",
     value: 22.50
   }]);
+  const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
 
-  const listFiltered = FilterListByMonth(listItem, getCurrentMonth());
+  const listFiltered = FilterListByMonth(listItem, currentMonth);
 
+  const handleMonthChange = (newDate: string) => setCurrentMonth(newDate);
 
   return (
     <C.Container>
@@ -35,7 +34,10 @@ export const App = () => {
         <C.Title>Sistema Financeiro</C.Title>
       </C.Header>
       <C.Body>
-
+        <AreaInfo
+          currentMonth={currentMonth}
+          onMonthChange={handleMonthChange}
+        />
         <TableArea list={listFiltered}/>
       </C.Body>
     </C.Container>
