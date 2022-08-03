@@ -14,17 +14,19 @@ import { categories } from '../../data/categories';
 // Helpers
 import { FilterListByMonth, getCurrentMonth } from '../../helpers/dataFilter';
 
+// Components
+import { TableArea } from '../../components/TableArea';
+
 export const App = () => {
 
   const [listItem, setListItem] = useState<Item[]>([{
-    date: "02-08-2022",
-    category: "alimentação",
+    date: "02/08/2022",
+    category: "food",
     title: "lanche",
     value: 22.50
   }]);
-  const [dataFiltered, setDataFiltered] = useState("02-08-2022");
 
-  const listFiltered = FilterListByMonth(listItem, dataFiltered);
+  const listFiltered = FilterListByMonth(listItem, getCurrentMonth());
 
 
   return (
@@ -33,12 +35,8 @@ export const App = () => {
         <C.Title>Sistema Financeiro</C.Title>
       </C.Header>
       <C.Body>
-        {listItem.map((item, i) => (
-          <div key={i}>{item.title}</div>
-        ))}
-        {listFiltered.map((item, i) => (
-          <div key={i}>{item.title}</div>
-        ))}
+
+        <TableArea list={listFiltered}/>
       </C.Body>
     </C.Container>
   )
