@@ -13,17 +13,20 @@ export const Container = styled.div`
 export const MonthArea = styled.div`
   flex: 1;
   display: flex;
-  align-item: center;
+  align-items: center;
 `;
 
 export const MonthArrow = styled.div`
-  text-align; center;
   font-size: 22px;
   cursor: pointer;
   color: #fff;
   background-color: darkblue;
-  padding: 3px 7px;
   border: 2px solid #000;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const MonthTitle = styled.div`
@@ -33,5 +36,5 @@ export const MonthTitle = styled.div`
 
 export const ResumeArea =styled.div`
   flex: 2;
-  display; flex;
+  display: flex;
 `;

@@ -4,12 +4,17 @@ import * as C from './styles';
 // Helpers
 import { formatMonth, returnMonthFormatted } from '../../helpers/dataFilter';
 
+// Components
+import { ResumeItem } from './ResumeItem';
+
 type Props = {
   currentMonth: string,
-  onMonthChange: (newDate: string) => void;
+  onMonthChange: (newDate: string) => void,
+  income: number,
+  expense: number
 };
 
-export const AreaInfo = ({ currentMonth, onMonthChange }: Props) => {
+export const AreaInfo = ({ currentMonth, onMonthChange, income, expense }: Props) => {
 
   const handleMonth = (action: string) => {
     const [month, year] = currentMonth.split("/");
@@ -32,7 +37,9 @@ export const AreaInfo = ({ currentMonth, onMonthChange }: Props) => {
         <C.MonthArrow onClick={() => handleMonth("down")}><i className="fa-solid fa-arrow-right"></i></C.MonthArrow>
       </C.MonthArea>
       <C.ResumeArea>
-        ...
+        <ResumeItem title="Receita" value={income}/>
+        <ResumeItem title="Despesas" value={expense}/>
+        <ResumeItem title="Balanço geral" value={income - expense}/>
       </C.ResumeArea>
     </C.Container>
   )

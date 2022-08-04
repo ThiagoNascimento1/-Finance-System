@@ -20,7 +20,7 @@ export const formatMonth = (data: string): string => {
     const [ month, year ] = data.split("/");
     const months = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
     
-    return `${months[parseInt(month) - 1]} / ${year}`;
+    return `${months[parseInt(month) - 1]} de ${year}`;
 };
 
 // tratar objeto Date
