@@ -27,6 +27,19 @@ export const AreaInfo = ({ currentMonth, onMonthChange, income, expense }: Props
     }
     
     onMonthChange(returnMonthFormatted(date));
+
+    };
+
+    const handleFinanceBalance = () => {
+      const financeBalance = income - expense;
+      if(financeBalance > 0) {
+        return "green"
+      } else if(financeBalance < 0) {
+        return "red"
+      } else {
+        return "#000"
+      }
+
   };
 
   return (
@@ -39,7 +52,7 @@ export const AreaInfo = ({ currentMonth, onMonthChange, income, expense }: Props
       <C.ResumeArea>
         <ResumeItem title="Receita" value={income}/>
         <ResumeItem title="Despesas" value={expense}/>
-        <ResumeItem title="Balanço geral" value={income - expense}/>
+        <ResumeItem color={handleFinanceBalance()} title="Balanço geral" value={income - expense}/>
       </C.ResumeArea>
     </C.Container>
   )

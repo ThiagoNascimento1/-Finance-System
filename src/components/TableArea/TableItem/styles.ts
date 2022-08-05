@@ -18,5 +18,5 @@ export const Value = styled.div<{expense: boolean}>`
     display: inline-block;
     padding: 5px 10px;
     border-radius: 5px;
-    color: ${props => props.expense ? '#f00' : '#0f0'};
+    color: ${props => props.expense ? 'red' : 'green'};
 `;

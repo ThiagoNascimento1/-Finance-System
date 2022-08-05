@@ -16,6 +16,7 @@ import { FilterListByMonth, getCurrentMonth } from '../../helpers/dataFilter';
 // Components
 import { TableArea } from '../../components/TableArea';
 import { AreaInfo } from '../../components/AreaInfo';
+import { AreaAdd } from '../../components/AreaAdd';
 
 export const App = () => {
 
@@ -46,20 +47,21 @@ export const App = () => {
 
   useEffect(() => {
 
-    const listItemsIncome = listItem.filter((item) => !categories[item.category].expense);
-    const listItemsExpense = listItem.filter((item) => categories[item.category].expense);
+    if (listFiltered) {
 
-    setIncome(0);
-    setExpense(0);
-    
-    listItemsIncome.map((item) => {
-      setIncome(prevState => prevState + item.value)
-    });
-    listItemsExpense.map((item) => {
-      setExpense(prevState => prevState + item.value)
-    });
+      setIncome(0);
+      setExpense(0);
 
-  }, [listItem]);
+      listFiltered.map(item => {
+        if(categories[item.category].expense) {
+          setExpense(prevState => prevState + item.value)
+        } else {
+          setIncome(prevState => prevState + item.value)
+        }
+      });
+    }
+
+  }, [currentMonth]);
 
 
   return (
@@ -68,13 +70,18 @@ export const App = () => {
         <C.Title>Sistema Financeiro</C.Title>
       </C.Header>
       <C.Body>
+
         <AreaInfo
           currentMonth={currentMonth}
           onMonthChange={handleMonthChange}
           expense={expense}
           income={income}
         />
+
+        <AreaAdd />
+
         <TableArea list={listFiltered}/>
+
       </C.Body>
     </C.Container>
   )
