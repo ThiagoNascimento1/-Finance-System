@@ -1,4 +1,5 @@
 import { Item } from "../types/Item";
+import { useEffect } from 'react';
 
 // retornar o mês atual
 export const getCurrentMonth = () => {
@@ -7,12 +8,6 @@ export const getCurrentMonth = () => {
     const year = d.getFullYear().toString();
     const monthFormatted = month.length > 1 ? month : `0${month}`;
     return `${monthFormatted}/${year}`;
-};
-
-// filtrar os items cadastrados com base no mês
-export const FilterListByMonth = (list: Item[], data: string): Item[] => {
-    const newList = list.filter(item => item.date.includes(data));
-    return newList;
 };
 
 // formatar o mês em string
@@ -28,4 +23,11 @@ export const returnMonthFormatted = (date: Date) => {
     const month = (date.getMonth() + 1).toString();
     const year = date.getFullYear().toString();
     return `${month.length > 1 ? month : `0${month}`}/${year}`;
+};
+
+// formatando valor recebido do input
+export const handleDate = (date: string) => {
+    const [year, month, day] = date.split("-");
+    return `${day}/${month}/${year}`;
+
 };

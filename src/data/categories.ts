@@ -3,5 +3,7 @@ import { Category } from '../types/Category';
 export const categories:Category = {
     food: { title: "alimentação", color: "blue", expense: true },
     rent: { title: "aluguel", color: "brown", expense: true },
-    salary: { title: "salário", color: "green", expense: false }
+    income: { title: "nova receita", color: "green", expense: false },
+    leisure: { title: "lazer", color: "pink", expense: true},
+    cheers: { title: "saúde", color: "yellow", expense: true}
 };

@@ -20,7 +20,7 @@ export const TableItem = ({ item }: Props) => {
           {categories[item.category].title}
         </C.Category>
       </C.TableColumn>
-      <C.TableColumn>{item.title}</C.TableColumn>
+      <C.TableColumn>{item.description}</C.TableColumn>
       <C.TableColumn>
         <C.Value expense={categories[item.category].expense}>
         R$ {item.value}

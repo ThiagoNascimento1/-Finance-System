@@ -32,6 +32,11 @@ export const MonthArrow = styled.div`
 export const MonthTitle = styled.div`
   flex: 1;
   text-align: center;
+  height: 30px;
+  line-height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: darkblue;
 `;
 
 export const ResumeArea =styled.div`

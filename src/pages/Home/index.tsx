@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 import { categories } from '../../data/categories';
 
 // Helpers
-import { FilterListByMonth, getCurrentMonth } from '../../helpers/dataFilter';
+import { getCurrentMonth } from '../../helpers/dataFilter';
 
 // Components
 import { TableArea } from '../../components/TableArea';
@@ -20,48 +20,33 @@ import { AreaAdd } from '../../components/AreaAdd';
 
 export const App = () => {
 
-  const [listItem, setListItem] = useState<Item[]>([{
-    date: "02/08/2022",
-    category: "food",
-    title: "lanche",
-    value: 22.50
-  },{
-    date: "04/08/2022",
-    category: "salary",
-    title: "sálario",
-    value: 1000.00
-  },{
-    date: "04/08/2022",
-    category: "food",
-    title: "almoço",
-    value: 25.00
-  }]);
+  const [listItems, setListItems] = useState<Item[]>([]);
   const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
 
-  const listFiltered = FilterListByMonth(listItem, currentMonth);
+  const listFiltered: Item[] = listItems.filter(item => item.date.includes(currentMonth));
 
   const handleMonthChange = (newDate: string) => setCurrentMonth(newDate);
 
+  const handleAddItem = (item: Item) => {
+    setListItems(prevList => [...prevList, item])
+  };
 
   useEffect(() => {
 
-    if (listFiltered) {
+    setIncome(0);
+    setExpense(0);
 
-      setIncome(0);
-      setExpense(0);
+    listFiltered.map(item => {
+      if(categories[item.category].expense) {
+        setExpense(prevState => prevState + item.value)
+      } else {
+        setIncome(prevState => prevState + item.value)
+      }
+    });
 
-      listFiltered.map(item => {
-        if(categories[item.category].expense) {
-          setExpense(prevState => prevState + item.value)
-        } else {
-          setIncome(prevState => prevState + item.value)
-        }
-      });
-    }
-
-  }, [currentMonth]);
+  }, [currentMonth, listItems]);
 
 
   return (
@@ -78,7 +63,7 @@ export const App = () => {
           income={income}
         />
 
-        <AreaAdd />
+        <AreaAdd handleAddItem={handleAddItem}/>
 
         <TableArea list={listFiltered}/>
 
