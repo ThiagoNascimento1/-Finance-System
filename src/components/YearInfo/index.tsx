@@ -1,17 +1,17 @@
 import * as C from './styles';
 
 type Props = {
-  currentYear: number,
-  handleYearChange: (newYear: number) => void
+  currentYear: string,
+  handleYearChange: (newYear: string) => void
 };
 
 export const YearInfo = ({ currentYear, handleYearChange }: Props) => {
 
   const setNewYear = (p: boolean) => {
     if (p) {
-      handleYearChange(currentYear + 1);
+      handleYearChange((Number(currentYear) + 1).toString());
     } else {
-      handleYearChange(currentYear - 1);
+      handleYearChange((Number(currentYear) - 1).toString());
     }
   };
 

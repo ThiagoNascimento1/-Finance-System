@@ -23,7 +23,7 @@ import { NavButton } from '../../components/NavButton';
 
 export const App = () => {
 
-  const [currentSection, setCurrentSection] = useState(false)
+  const [currentSection, setCurrentSection] = useState(true)
   const [listItems, setListItems] = useState<Item[]>([]);
   const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
   const [currentYear, setCurrentYear] = useState(getCurrentYear(currentMonth));
@@ -31,11 +31,12 @@ export const App = () => {
   const [expense, setExpense] = useState(0);
   const [sortedFilteredList, setSortedFilteredList] = useState<Item[]>([]);
 
-  const listFiltered: Item[] = listItems.filter(item => item.date.includes(currentMonth));
+  const MonthFilteredList: Item[] = listItems.filter(item => item.date.includes(currentMonth));
+  const YearFilteredList: Item[] = listItems.filter(item => item.date.includes(currentYear));
 
   const handleMonthChange = (newDate: string) => setCurrentMonth(newDate);
 
-  const handleYearChange = (year: number) => {
+  const handleYearChange = (year: string) => {
     setCurrentYear(year);
   };
 
@@ -47,17 +48,24 @@ export const App = () => {
     setListItems(() => listItems.filter(i => item != i));
   };
 
-  const handleSectionChange = (section: boolean) => section ? setCurrentSection(false)
-  : setCurrentSection(true);
+  const handleSectionChange = (section: boolean) => {
+    if (section) {
+      setCurrentSection(false)
+    } else {
+      setCurrentSection(true);
+    }
+    setCurrentYear(getCurrentYear(currentMonth));
+    setCurrentMonth(getCurrentMonth());
+  }
 
   useEffect(() => {
 
-    setSortedFilteredList(orderList(listFiltered));
+    setSortedFilteredList(orderList(MonthFilteredList));
 
     setIncome(0);
     setExpense(0);
 
-    listFiltered.map(item => {
+    MonthFilteredList.map(item => {
       if(categories[item.category].expense) {
         setExpense(prevState => prevState + item.value)
       } else {
@@ -92,7 +100,7 @@ export const App = () => {
         {
           currentSection ?
           <TableMonth list={sortedFilteredList} handleRemoveItem={handleRemoveItem}/>
-          : <TableYear />
+          : <TableYear list={YearFilteredList} currentYear={currentYear}/>
         }
 
       </C.Body>

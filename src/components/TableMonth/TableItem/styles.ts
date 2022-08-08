@@ -12,7 +12,7 @@ export const Category = styled.div<{color: string}>`
     border-radius: 5px;
     color: #fff;
     background-color: ${props => props.color};
-    `;
+`;
 
 export const Value = styled.div<{expense: boolean}>`
     display: inline-block;
