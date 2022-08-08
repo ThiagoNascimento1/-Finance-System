@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 import { categories } from '../../data/categories';
 
 // Helpers
-import { getCurrentMonth } from '../../helpers/dataFilter';
+import { getCurrentMonth, orderList } from '../../helpers/dataFilter';
 
 // Components
 import { TableArea } from '../../components/TableArea';
@@ -24,6 +24,7 @@ export const App = () => {
   const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
   const [income, setIncome] = useState(0);
   const [expense, setExpense] = useState(0);
+  const [sortedFilteredList, setSortedFilteredList] = useState<Item[]>([]);
 
   const listFiltered: Item[] = listItems.filter(item => item.date.includes(currentMonth));
 
@@ -38,6 +39,8 @@ export const App = () => {
   };
 
   useEffect(() => {
+
+    setSortedFilteredList(orderList(listFiltered));
 
     setIncome(0);
     setExpense(0);
@@ -69,7 +72,7 @@ export const App = () => {
 
         <AreaAdd handleAddItem={handleAddItem}/>
 
-        <TableArea list={listFiltered} handleRemoveItem={handleRemoveItem}/>
+        <TableArea list={sortedFilteredList} handleRemoveItem={handleRemoveItem}/>
 
       </C.Body>
     </C.Container>

@@ -29,5 +29,31 @@ export const returnMonthFormatted = (date: Date) => {
 export const handleDate = (date: string) => {
     const [year, month, day] = date.split("-");
     return `${day}/${month}/${year}`;
-
 };
+
+// ordernar lista filtrada
+export const orderList = (list: Item[]) => {
+
+    let newList: Item[] = [];
+
+    if (list) {
+        let arrayDays: string[] = []
+
+        list.map(item => {
+            const [d] = item.date.split("/");
+            arrayDays.push(d);
+        })
+
+        arrayDays = arrayDays.sort().reverse();
+
+        arrayDays.map(item => {
+            list.map(i => {
+                const [d] = i.date.split("/");
+                if (item == d) {
+                    newList.push(i);
+                }
+            })
+        })
+    }
+    return newList;
+}
