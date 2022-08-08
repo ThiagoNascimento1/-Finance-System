@@ -33,6 +33,10 @@ export const App = () => {
     setListItems(prevList => [...prevList, item])
   };
 
+  const handleRemoveItem = (item: Item) => {
+    setListItems(() => listItems.filter(i => item != i));
+  };
+
   useEffect(() => {
 
     setIncome(0);
@@ -65,7 +69,7 @@ export const App = () => {
 
         <AreaAdd handleAddItem={handleAddItem}/>
 
-        <TableArea list={listFiltered}/>
+        <TableArea list={listFiltered} handleRemoveItem={handleRemoveItem}/>
 
       </C.Body>
     </C.Container>

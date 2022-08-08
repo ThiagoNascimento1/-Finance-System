@@ -8,10 +8,11 @@ import { Item } from '../../types/Item';
 import { TableItem } from './TableItem';
 
 type Props = {
-    list: Item[]
+    list: Item[],
+    handleRemoveItem: (item: Item) => void;
 }
 
-export const TableArea = ({ list }: Props) => {
+export const TableArea = ({ list, handleRemoveItem }: Props) => {
 
     return (
         <C.Container>
@@ -21,12 +22,13 @@ export const TableArea = ({ list }: Props) => {
                     <C.Thead width={150}>Categoria</C.Thead>
                     <C.Thead>Título</C.Thead>
                     <C.Thead width={100}>Valor</C.Thead>
+                    <C.Thead width={30}></C.Thead>
                 </tr>
             </thead>
             <tbody>
                 {
                     list.map((item, i) => (
-                        <TableItem key={i} item={item} />
+                        <TableItem key={i} item={item} handleRemoveItem={handleRemoveItem}/>
                     ))
                 }
             </tbody>

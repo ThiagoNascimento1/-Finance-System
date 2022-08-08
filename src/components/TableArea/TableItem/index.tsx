@@ -9,9 +9,15 @@ import { categories } from '../../../data/categories';
 
 type Props = {
   item: Item;
+  handleRemoveItem: (item: Item) => void;
 };
 
-export const TableItem = ({ item }: Props) => {
+export const TableItem = ({ item, handleRemoveItem }: Props) => {
+
+  const handleRemove = () => {
+    handleRemoveItem(item);
+  };
+
   return (
     <C.TableRow>
       <C.TableColumn>{item.date}</C.TableColumn>
@@ -25,6 +31,9 @@ export const TableItem = ({ item }: Props) => {
         <C.Value expense={categories[item.category].expense}>
         R$ {item.value}
         </C.Value>
+      </C.TableColumn>
+      <C.TableColumn>
+        <C.IconTrash onClick={handleRemove}><i className="fa-solid fa-trash"></i></C.IconTrash>
       </C.TableColumn>
     </C.TableRow>
   )
