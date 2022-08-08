@@ -14,7 +14,7 @@ type Props = {
   expense: number
 };
 
-export const AreaInfo = ({ currentMonth, onMonthChange, income, expense }: Props) => {
+export const MonthInfo = ({ currentMonth, onMonthChange, income, expense }: Props) => {
 
   const handleMonth = (action: string) => {
     const [month, year] = currentMonth.split("/");

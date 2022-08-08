@@ -10,6 +10,12 @@ export const getCurrentMonth = () => {
     return `${monthFormatted}/${year}`;
 };
 
+// retornar o ano atual
+export const getCurrentYear = (date: string) => {
+    const [, year] = date.split("/");
+    return Number(year);
+};
+
 // formatar o mês em string
 export const formatMonth = (data: string): string => {
     const [ month, year ] = data.split("/");

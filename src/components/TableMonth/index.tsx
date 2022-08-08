@@ -12,7 +12,7 @@ type Props = {
     handleRemoveItem: (item: Item) => void;
 }
 
-export const TableArea = ({ list, handleRemoveItem }: Props) => {
+export const TableMonth = ({ list, handleRemoveItem }: Props) => {
 
     return (
         <C.Container>
