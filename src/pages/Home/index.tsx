@@ -79,7 +79,7 @@ export const App = () => {
   return (
     <C.Container>
       <C.Header>
-        <C.Title>Sistema Financeiro</C.Title>
+        <C.Title>Sistema de Gestão Financeira</C.Title>
       </C.Header>
       <C.Body>
 

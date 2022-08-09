@@ -1,6 +1,10 @@
+// Styles
 import * as C from './styles';
+// Types
 import { Item } from '../../types/Item';
+// data
 import { categories } from '../../data/categories';
+// Hooks
 import { useEffect, useState } from 'react';
 
 type Props = {
@@ -12,8 +16,9 @@ export const TableYear = ({ list, currentYear }: Props) => {
 
   const [incomeYear, setIncomeYear] = useState(0);
   const [expenseYear, setExpenseYear] = useState(0);
+  const [mostUsedCategory, setMostUsedCategory] = useState("");
 
-  const balance =incomeYear - expenseYear
+  const balance = incomeYear - expenseYear;
 
   const handleColorBalance = () => {
     if(balance > 0) {
@@ -58,9 +63,6 @@ export const TableYear = ({ list, currentYear }: Props) => {
             </tr>
           </tbody>
       </C.Table>
-      <C.ExtraInfo>
-        Seus maiores gastos neste ano foram em <C.Category>Alimentação</C.Category>.
-      </C.ExtraInfo>
     </C.Container>
   )
 };

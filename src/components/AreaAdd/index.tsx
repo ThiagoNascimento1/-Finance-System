@@ -53,9 +53,9 @@ export const AreaAdd = ({ handleAddItem }: Props) => {
         value={category}
         onChange={e => setCategory(e.target.value)}
       >
+        <option value="income">nova receita</option>
         <option value="food">alimentação</option>
         <option value="rent">aluguel</option>
-        <option value="income">nova receita</option>
         <option value="leisure">lazer</option>
         <option value="cheers">saúde</option>
       </C.Category>

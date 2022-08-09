@@ -27,14 +27,3 @@ export const TableColumn = styled.td<{color:string | undefined}>`
   font-size: 18px;
   color: ${props => props.color};
 `;
-
-export const ExtraInfo = styled.div`
-  width: 100%;
-  padding: 20px;
-  background-color: #fff;
-  font-size: 18px;
-`;
-
-export const Category = styled.span`
-  font-weight: 900;
-`;
